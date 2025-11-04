@@ -52,4 +52,29 @@ mean_shares <- mean(facebook_data$share, na.rm = TRUE)
 # Create an Engagement column
 facebook_data$Engagement <- facebook_data$like + facebook_data$comment + facebook_data$share
 #-------------------------------------------------------------------------------
-# c.
+# c.Using the Lung Capacity dataset:
+#-------------------------------------------------------------------------------
+#Select children below age 12.
+#-------------------------------------------------------------------------------
+head(lungcap_data)
+children <- lungcap_data[lungcap_data$`Age( years)` < 12, ]
+print(children)
+#-------------------------------------------------------------------------------
+# Group by Gender and calculate average Lung Capacity
+#-------------------------------------------------------------------------------
+library(dplyr)
+
+avg_lungcap_by_gender <- lungcap_data %>%
+  group_by(Gender) %>%
+  summarise(mean_LungCap = mean(`LungCap(cc)`, na.rm = TRUE))
+
+print(avg_lungcap_by_gender)
+#-------------------------------------------------------------------------------
+# # 3.Data Manipulation (Using dplyr/base R)
+#-------------------------------------------------------------------------------
+# a) Rename the columns of Titanic dataset to lowercase.
+#-------------------------------------------------------------------------------
+colnames(titanic_data) <- tolower(colnames(titanic_data))
+#-------------------------------------------------------------------------------
+# b) Sort the Titanic dataset by Age in descending order.
+#-------------------------------------------------------------------------------
