@@ -5,10 +5,10 @@ library(tidyverse)
 library(leaflet)
 
 # 2. LOAD DATA
-file_path <- "cleaned_synthetic_traffic_accident_data.csv"
+file_path <- read.csv(file.choose())
 
 tryCatch({
-  accidents_df <- read.csv(file_path)
+  accidents_df <- file_path
 }, error = function(e) {
   message("Error loading file. Make sure '", file_path, "' is in the correct directory.")
   message("Original error: ", e$message)
@@ -133,3 +133,4 @@ accidents_df$New_Cluster <- as.factor(kmeans_result$cluster)
 } else {
   message("Dataframe 'accidents_df' not found. Please check data loading step.")
 }
+
